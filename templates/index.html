@@ -16,9 +16,34 @@
                 <img src="{{ url_for('VideoStream') }}" width="100%">
             </div>
         </div>
+
+        
+        
+            <button class="btn btn-success" onclick="SendPost()">вреред</button>
+        
+
+
+
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
+    <script>
+        
+
+
+        function SendPost(){
+            data = {"up":1}
+            url = '/'
+
+            $.ajax({
+            type: "POST",
+            url: url,
+            data: data,    
+            });
+        }
+
+    </script>
 
 
 </body>

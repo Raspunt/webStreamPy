@@ -1,4 +1,5 @@
-from flask import Flask,render_template,Response
+from flask import Flask,render_template,Response,request
+
 from camera import Camera
 
 
@@ -18,6 +19,11 @@ def VideoStream():
 def Startpage():
     return render_template('index.html')
 
+
+@app.route('/',methods = ["POST"])
+def activateMotors():
+    print(request.form)
+    return render_template('index.html')
 
 
 
