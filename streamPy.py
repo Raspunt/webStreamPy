@@ -1,5 +1,5 @@
 from flask import Flask,render_template,Response,request
-import gpiozero as gz
+
 from time import *
 from  motors import MotorMood
 
@@ -7,11 +7,7 @@ from camera import Camera
 
 
 app = Flask(__name__)
-
-mot1 = gz.Motor(16,19)
-mot2 = gz.Motor(17,27)
 mm = MotorMood()
-isRun = False
 
 
 
@@ -26,24 +22,35 @@ def Startpage():
     return render_template('index.html')
 
 
+comArray = []
+
 @app.route('/',methods = ["POST"])
 def activateMotors():
     print(request.form)
     com = request.form['comand']
-    if com == "up":
-        for i in range(10000):
+    comArray.append(com)
+    while (len(comArray) == 1):
+        if com == "up":
             mm.motorV()
-    if com == "down":
-        for i in range(10000):
+            print("едет в вперед")
+        if com == "down":
             mm.motorD()
+            print("едет в назад")
 
-    if com == "left":
-        for i in range(10000):
+        if com == "left":
             mm.motorL()
+            print("едет в лево")
 
-    if com == "right":
-        for i in range(10000):
+        if com == "right":
             mm.motorR()
+            print("едет в право")
+
+        if com == "stop":
+            mm.motorS()
+            print("Stop")
+    else :
+        comArray.clear()
+        print(len(comArray))
 
 
 

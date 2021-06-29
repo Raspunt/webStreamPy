@@ -1,5 +1,3 @@
-
-
 import time
 import RPi.GPIO as GPIO
 
@@ -60,6 +58,7 @@ class MotorMood:
 
         GPIO.output(mSpeed_2,True) 
         GPIO.output(mNapr_2,False)
+
 
 
 
